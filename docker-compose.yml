@@ -3,7 +3,7 @@ version: '2'
 services:
   filebeat:
     build:
-      context: ./.docker/filebeat
+      context: ./filebeat
       args:
         ELASTIC_VERSION: $DOCKER_FILEBEAT_ELASTIC_VERSION
     container_name: filebeat
