@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  filebeat:
+    build:
+      context: ./.docker/filebeat
+      args:
+        ELASTIC_VERSION: $DOCKER_FILEBEAT_ELASTIC_VERSION
+    container_name: filebeat
+    restart: always
+    volumes:
+      - ./.docker/data/filebeat:/usr/share/filebeat/data
+      - ./logs/backend:/etc/logs/backend
+      - ./logs/frontend:/etc/logs/frontend
+      - ./logs/mobile:/etc/logs/mobile
+      - ./.docker/logs/nginx:/etc/logs/nginx
+      - ./.docker/logs/php:/etc/logs/php
+      - ./.docker/logs/mysql:/etc/logs/mysql
+      - ./.docker/logs/filebeat:/usr/share/filebeat/logs
+    networks:
+      - dockerelk_elk
+
+networks:
+  dockerelk_elk:
+    external: true
