@@ -9,14 +9,8 @@ services:
     container_name: filebeat
     restart: always
     volumes:
-      - ./.docker/data/filebeat:/usr/share/filebeat/data
-      - ./logs/backend:/etc/logs/backend
-      - ./logs/frontend:/etc/logs/frontend
-      - ./logs/mobile:/etc/logs/mobile
-      - ./.docker/logs/nginx:/etc/logs/nginx
-      - ./.docker/logs/php:/etc/logs/php
-      - ./.docker/logs/mysql:/etc/logs/mysql
-      - ./.docker/logs/filebeat:/usr/share/filebeat/logs
+      - ./data/filebeat:/usr/share/filebeat/data
+      - ./logs/filebeat:/usr/share/filebeat/logs
     networks:
       - dockerelk_elk
 
